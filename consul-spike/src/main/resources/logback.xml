@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder 
+			by default -->
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{15} -
+				%msg%n</pattern>
+		</encoder>
+	</appender>
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>/var/log/consul-spike/consul-spike.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/var/log/consul-spike/consul-spike_%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+			<!-- keep 30 days' worth of history -->
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder 
+			by default -->
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{15} -
+				%msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.stratio.consul" additivity="false">
+		<appender-ref ref="FILE" />
+	</logger>
+
+
+	<logger name="com.stratio.consul.spike" additivity="false">
+		<appender-ref ref="FILE" />
+	</logger>
+
+	<logger name="org.apache.http.wire">
+		<level value="DEBUG" />
+	</logger>
+
+	<logger
+		name="org.springframework.web.socket.sockjs.transport.handler.XhrStreamingTransportHandler">
+		<level value="OFF" />
+	</logger>
+
+	<root level="DEBUG">
+		<appender-ref ref="FILE" />
+	</root>
+
+</configuration>

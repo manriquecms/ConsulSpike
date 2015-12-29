@@ -1,0 +1,11 @@
+{
+	"service":{
+		"name": "kafka", 
+		"tags": ["kafka"], 
+		"port": 9092, 
+		"check": {
+			"script": "netstat | grep 9092 >/dev/null 2>&1", 
+			"interval": 5
+		}
+	}
+}

@@ -1,0 +1,11 @@
+{
+	"service":{
+		"name": "zookeeper", 
+		"tags": ["zookeeper"], 
+		"port": 2181, 
+		"check": {
+			"script": "netstat | grep 2181 >/dev/null 2>&1", 
+			"interval": 5
+		}
+	}
+}
